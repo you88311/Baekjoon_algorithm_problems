@@ -4,34 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Main {
-    static final Integer[] X = {1, 0, -1, 0};
-    static final Integer[] Y = {0, 1, 0, -1};
-
-    public int bfs(int[][] arr, boolean[][] visited, Integer[] cord) {
-        Queue<Integer[]> queue = new LinkedList<>();
-
-        queue.add(cord);
-        visited[cord[0]][cord[1]] = true;
-        int graphSize = 1;
-
-        while (!queue.isEmpty()) {
-            cord = queue.poll();
-
-            for (int i = 0; i < 4; i++) {
-                Integer[] adjCord = {cord[0] + X[i], cord[1] + Y[i]};
-                if (!isInRange(adjCord, arr)) continue;
-                if (!visited[adjCord[0]][adjCord[1]] && arr[adjCord[0]][adjCord[1]] == 1) {
-                    queue.add(adjCord);
-                    visited[adjCord[0]][adjCord[1]] = true;
-                    graphSize++;
-                }
-            }
-
-        }
-        return graphSize;
-    }
-
-    private boolean isInRange(Integer[] coordinate, int[][] arr) {
+    static boolean isInRange(Integer[] coordinate, int[][] arr) {
         return coordinate[0] < arr.length && coordinate[1] < arr[0].length && coordinate[0] >= 0 && coordinate[1] >= 0;
     }
 
@@ -40,12 +13,15 @@ public class Main {
 //        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         Main main = new Main();
+        Queue<Integer[]> queue = new LinkedList<>();
         String[] size = br.readLine().split(" ");
         final int COLUMN = Integer.parseInt(size[0]);
         final int ROW = Integer.parseInt(size[1]);
+        final Integer[] X = {1, 0, -1, 0};
+        final Integer[] Y = {0, 1, 0, -1};
         int[][] arr = new int[COLUMN][ROW];
         boolean[][] visited = new boolean[COLUMN][ROW];//기본값 false로 초기화
-        //상하좌우 좌표
+        Integer[] cord = new Integer[2];
 
         int graphCnt = 0;
         int maxGraphSize = 0;
@@ -62,7 +38,25 @@ public class Main {
         for (int i = 0; i < COLUMN; i++) {
             for (int j = 0; j < ROW; j++) {
                 if (arr[i][j] == 0 || visited[i][j]) continue;
-                graphSize = main.bfs(arr, visited, new Integer[]{i, j});
+                cord[0] = i;
+                cord[1] = j;
+                queue.add(cord);
+                visited[cord[0]][cord[1]] = true;
+                graphSize = 1;
+
+                while (!queue.isEmpty()) {
+                    cord = queue.poll();
+
+                    for (int k = 0; k < 4; k++) {
+                        Integer[] adjCord = {cord[0] + X[k], cord[1] + Y[k]};
+                        if (!isInRange(adjCord, arr)) continue;
+                        if (!visited[adjCord[0]][adjCord[1]] && arr[adjCord[0]][adjCord[1]] == 1) {
+                            queue.add(adjCord);
+                            visited[adjCord[0]][adjCord[1]] = true;
+                            graphSize++;
+                        }
+                    }
+                }
                 graphCnt++;
                 maxGraphSize = Math.max(maxGraphSize, graphSize);
             }
