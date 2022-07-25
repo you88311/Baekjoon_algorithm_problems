@@ -38,11 +38,9 @@ public class Main {
             }
         }
 
-
-        //이중for문 돌면서 1찾고
         while (!queue.isEmpty()) {
             cord = queue.poll();
-         /*dfs... dist -1아니라도 만약 현재 탐색의 dist보다 크면 queue에 넣고 계속 dfs
+         /*dfs... dist -1아니라도 만약 현재 탐색의 dist보다 크면 queue에 넣고
                                                       작으면 queue에 안넣음*/
             for (int k = 0; k < 4; k++) {
                 adjX = cord[0] + dX[k];
