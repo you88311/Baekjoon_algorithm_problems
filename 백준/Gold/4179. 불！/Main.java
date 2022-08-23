@@ -23,10 +23,7 @@ public class Main {
                 }
             }else {
                 if(maze[x][y] == 0) {
-                    if(fire[x][y]!= 0 && fire[x][y] > maze[cur[0]][cur[1]] + 1) {
-                        maze[x][y] = maze[cur[0]][cur[1]] + 1;
-                        queue.add(new Integer[]{x, y});
-                    }else if(fire[x][y] == 0){
+                    if(fire[x][y] == 0 || fire[x][y] > maze[cur[0]][cur[1]] + 1) {
                         maze[x][y] = maze[cur[0]][cur[1]] + 1;
                         queue.add(new Integer[]{x, y});
                     }

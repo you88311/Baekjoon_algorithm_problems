@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Main1 {
+public class Main {
     final Integer[] X = {1, 0, -1, 0};
     final Integer[] Y = {0, 1, 0, -1};
     public int bfs(Queue<Integer[]>queue,int[][] arr, boolean[][] visited, Integer[] cord) {
