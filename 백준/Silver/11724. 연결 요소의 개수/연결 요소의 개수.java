@@ -10,7 +10,7 @@ public class Main {
         boolean visited[] = new boolean[n + 1];
         LinkedList<Integer>[] graph = new LinkedList[n + 1];
         for (int i = 0; i < n+1; i++) {
-            graph[i] = new LinkedList<>();
+            graph[i] = new LinkedList<Integer>();
         }
 
         Integer u, v;
@@ -46,6 +46,5 @@ public class Main {
         }
 
         System.out.println(comCnt);
-
     }
 }
