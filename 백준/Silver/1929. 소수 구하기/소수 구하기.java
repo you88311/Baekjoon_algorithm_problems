@@ -7,20 +7,20 @@ class Main {
         String[] input = br.readLine().split(" ");
         int m = Integer.parseInt(input[0]);
         int n = Integer.parseInt(input[1]);
-        boolean isPrime;
-        if(m == 1) m = 2;
-        
-        for(int i = m; i <= n ; i++){
-            isPrime = true;
-            int sqrt = (int)Math.sqrt(i);
-            for(int j = 2; j <= sqrt; j++){
-                if(i % j == 0){
-                    isPrime = false;
-                    break;
-                }
-            }
+        boolean isPrime[] = new boolean[n+1];
+        Arrays.fill(isPrime, true);
+        isPrime[0] = isPrime[1] = false;
 
-            if(isPrime) System.out.println(i);
+        if(m == 1) m = 2;
+
+        for (int i = 2; i*i <= n; i++) {
+            for (int j = i*i; j <= n; j+=i) {
+                isPrime[j] = false;
+            }
+        }
+
+        for (int i = m; i < isPrime.length; i++) {
+            if(isPrime[i]) System.out.println(i);
         }
 
         return;
