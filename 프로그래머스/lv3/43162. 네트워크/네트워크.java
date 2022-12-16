@@ -10,9 +10,7 @@ class Solution {
                 dfs(isVisited, computers, n, i);
                 answer++;
             }
-
         }
-        
         
         return answer;
         
@@ -23,10 +21,8 @@ class Solution {
         for(int i = 0; i < computers[k].length; i++){
             if(!isVisited[i] && k != i && computers[k][i] == 1){
                 isVisited[i] = true;
-                System.out.println(i);
                 dfs(isVisited, computers, n, i);
             }
-                
         }
     }
 }
