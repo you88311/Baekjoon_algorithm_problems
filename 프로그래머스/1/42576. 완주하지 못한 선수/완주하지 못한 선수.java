@@ -4,30 +4,26 @@ import java.util.*;
 class Solution {
     
     public String solution(String[] participant, String[] completion) {
-        HashMap<String, Integer> failed = new HashMap<>();
+        HashMap<String, Integer> map = new HashMap<>();
         int cnt;
         for(String e : participant){
-            if(failed.containsKey(e)){
-                cnt = failed.get(e)+1;
-            }else{
-                cnt = 1;
-            }
-            failed.put(e,cnt);
+            map.put(e, map.getOrDefault(e, 0) + 1);
         }
         
 
         for(String e : completion){
-            if(!failed.containsKey(e)) continue;
+            if(!map.containsKey(e)) continue;
             
-            cnt = failed.get(e)-1;
+            cnt = map.get(e)-1;
             if(cnt == 0){
-                failed.remove(e);
+                map.remove(e);
             }else{
-                failed.put(e,cnt);
+                map.put(e,cnt);
             }
         }
+        
         String failedName = "";
-        for(Map.Entry<String, Integer> entrySet : failed.entrySet()){
+        for(Map.Entry<String, Integer> entrySet : map.entrySet()){
             failedName = entrySet.getKey();
         }
         
