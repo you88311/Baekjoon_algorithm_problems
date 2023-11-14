@@ -18,14 +18,9 @@ class Solution {
         }
         
         // 경우의 수 계산
-        int result = 0;
+        int result = 1;
         for(Map.Entry<String,Integer> entry : map.entrySet()){
-            int currentCnt = entry.getValue()+1;
-            if(result == 0){
-                result = currentCnt;
-            }else{
-                result *= currentCnt;
-            }
+            result *= entry.getValue()+1;
         }
         result -= 1; // 모든 의상의 종류에 대해 입지 않은 경우의 수 제거
         
