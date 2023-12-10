@@ -11,10 +11,11 @@ class Solution {
             if('(' == ch){
                 cnt++;
             }else{
-                if(cnt == 0){
-                    return false;
-                }
                 cnt--;
+            }
+            
+            if(cnt < 0){
+                return false;
             }
             
             left -= 1;
