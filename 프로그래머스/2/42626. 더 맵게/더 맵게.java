@@ -1,5 +1,6 @@
 import java.util.*;
 
+// 이거는 꼭 다시 풀어봐
 class Solution {
     public int solution(int[] scoville, int K) {
         int answer = 0;
@@ -7,10 +8,6 @@ class Solution {
         Integer secondScoville;
         Integer newScoville;
         
-        // scoville 오름차순 정렬
-        Arrays.sort(scoville);
-        
-        // scoville 0번째부터 queue.add()
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
         for(int e : scoville){
             priorityQueue.add(e);
